@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Gulp.js Build Tool</title>
+
+		<meta name="description" content="Gulp.js presentation for Dev-to-dev meeting">
+		<meta name="author" content="Keith Morris">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>Gulp.js</h1>
+					<h4>or</h4>
+					<h3>Why your build should be fun!</h3>
+				</section>
+
+
+				<section>
+					<h3>Why are we even talking about this?</h3>
+				</section>
+
+				<section>
+					<h1>#buildfirst</h1>
+					<blockquote>
+						&ldquo;Build Early, Build Always.&rdquo;
+					</blockquote>
+				</section>
+
+
+
+				<section>
+					<h2>Bring Build Process Closer to</h2>
+					<h1>Development</h1>
+					<h4 class="fragment">(Where it should be)</h4>
+				</section>
+
+
+
+				<section>
+					<h2>Another build tool? Ugh!</h2>
+					<h3>But what about...</h3>
+					<ul class="fragment">
+						<li>Jenkins</li>
+						<li>Bamboo</li>
+					</ul>
+					<div class="fragment">
+						<h3>Why not these?</h3>
+						<ul>
+							<li>MSBuild</li>
+							<li>Make</li>
+							<li>Rake</li>
+							<li>Ant</li>
+							<li>Maven</li>
+							<li>Grunt</li>
+						</ul>
+					</div>
+				</section>
+
+
+				<section>
+					<h2>Why Gulp.js?</h2>
+				</section>
+
+
+				<section>
+					<h2>Code</h2>
+					<h2>vs.</h2>
+					<h2>Configuration</h2>
+				</section>
+
+				<section>
+					<h2>Most build tools require</h2>
+					<h2>Cryptic</h2>
+					<h2>Configuration</h2>
+				</section>
+
+
+				<section>
+					<h3>Ant Script</h3>
+					<pre><code class="xml" data-trim contenteditable>
+
+<project basedir="../" default="dist" name="MyProject">
+    <description>simple example build file</description>
+    <!-- set global properties for this build -->
+    <property location="src" name="src"></property>
+    <property location="build" name="build"></property>
+    <property location="dist" name="dist"></property>
+    <target name="init">
+        <!-- Create the time stamp -->
+        <tstamp></tstamp>
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir="${build}"></mkdir>
+    </target>
+    <target depends="init" description="compile the source " name="compile">
+        <!-- Compile the java code from ${src} into ${build} -->
+        <javac destdir="${build}" srcdir="${src}"></javac>
+    </target>
+    <target depends="compile" description="generate the distribution" name="dist">
+        <!-- Create the distribution directory -->
+        <mkdir dir="${dist}/lib"></mkdir>
+        <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+        <jar basedir="${build}" jarfile="${dist}/lib/MyProject-${DSTAMP}.jar"></jar>
+    </target>
+    <target description="clean up" name="clean">
+        <!-- Delete the ${build} and ${dist} directory trees -->
+        <delete dir="${build}"></delete>
+        <delete dir="${dist}"></delete>
+    </target>
+</project>
+
+					</code></pre>
+				</section>
+
+
+
+
+				<section>
+					<h3>Even Grunt.js</h3>
+					<pre><code class="javascript" data-trim contenteditable>
+grunt.initConfig({
+	pkg: grunt.file.readJSON('package.json'),
+	meta: {
+		banner:
+			'/*!\n' +
+			' * reveal.js <%= pkg.version %> (<%= grunt.template.today("yyyy-mm-dd, HH:MM") %>)\n' +
+			' * http://lab.hakim.se/reveal-js\n' +
+			' * MIT licensed\n' +
+			' *\n' +
+			' * Copyright (C) 2014 Hakim El Hattab, http://hakim.se\n' +
+			' */'
+	},
+
+	qunit: {
+		files: [ 'test/*.html' ]
+	},
+
+	uglify: {
+		options: {
+			banner: '<%= meta.banner %>\n'
+		},
+		build: {
+			src: 'js/reveal.js',
+			dest: 'js/reveal.min.js'
+		}
+	},
+
+	cssmin: {
+		compress: {
+			files: {
+				'css/reveal.min.css': [ 'css/reveal.css' ]
+			}
+		}
+	},
+
+	sass: {
+		main: {
+			files: {
+				'css/theme/default.css': 'css/theme/source/default.scss',
+				'css/theme/beige.css': 'css/theme/source/beige.scss',
+				'css/theme/night.css': 'css/theme/source/night.scss',
+				'css/theme/serif.css': 'css/theme/source/serif.scss',
+				'css/theme/simple.css': 'css/theme/source/simple.scss',
+				'css/theme/sky.css': 'css/theme/source/sky.scss',
+				'css/theme/moon.css': 'css/theme/source/moon.scss',
+				'css/theme/solarized.css': 'css/theme/source/solarized.scss',
+				'css/theme/blood.css': 'css/theme/source/blood.scss'
+			}
+		}
+	},
+
+	jshint: {
+		options: {
+			curly: false,
+			eqeqeq: true,
+			immed: true,
+			latedef: true,
+			newcap: true,
+			noarg: true,
+			sub: true,
+			undef: true,
+			eqnull: true,
+			browser: true,
+			expr: true,
+			globals: {
+				head: false,
+				module: false,
+				console: false,
+				unescape: false
+			}
+		},
+		files: [ 'Gruntfile.js', 'js/reveal.js' ]
+	},
+
+	connect: {
+		server: {
+			options: {
+				port: port,
+				base: '.'
+			}
+		}
+	},
+
+	zip: {
+		'reveal-js-presentation.zip': [
+			'index.html',
+			'css/**',
+			'js/**',
+			'lib/**',
+			'images/**',
+			'plugin/**'
+		]
+	},
+
+	watch: {
+		main: {
+			files: [ 'Gruntfile.js', 'js/reveal.js', 'css/reveal.css' ],
+			tasks: 'default'
+		},
+		theme: {
+			files: [ 'css/theme/source/*.scss', 'css/theme/template/*.scss' ],
+			tasks: 'themes'
+		}
+	}
+
+});
+					</code></pre>
+				</section>
+
+
+
+				<section>
+					<h2>But Developers Like to</h2>
+					<h1>CODE!</h1>
+				</section>
+
+
+				<section>
+					<h2>Gulp.js</h2>
+					<h3>Only Four Main</h3>
+					<h3>Functions to Learn</h3>
+					<p>Plus a little Node.js/NPM</p>
+					<p class="fragment">(And it's JUST JavaScript!)</p>
+				</section>
+
+
+				<section>
+					<p>
+						<strong><code>gulp.task(name, fn)</code></strong>
+					</p>
+					<p>&nbsp;</p>
+					<p>It registers the function with a name.</p>
+					<p>You can optionally specify some dependencies if other tasks need to run first.</p>
+				</section>
+
+
+				<section>
+					<strong><code>gulp.src(glob)</code></strong>
+					<p>&nbsp;</p>
+					<p>This returns a readable stream.</p>
+					<p>Takes a file system glob (like grunt) and starts emitting files that match.</p>
+				</section>
+				
+				<section>
+					<strong><code>gulp.dest(folder)</code></strong>
+					<p>&nbsp;</p>
+					<p>This returns a writable stream</p>
+					<p>File objects piped to this are saved to the file system</p>
+				</section>
+
+				<section>
+					<p><strong><code>gulp.watch(glob, fn || ['task'])</code></strong></p>
+					<p>&nbsp;</p>
+					<p>
+						Runs a function or one or more <code>gulp.task</code>s when a file that matches the glob changes.
+					</p>
+				</section>
+
+
+				<section>
+					<h3>gulpfile.js</h3>
+					<p>(Again... just JavaScript)</p>
+					<pre><code data-trim contenteditable>
+// Node.js modules used by the tasks
+var gulp = require('gulp'),
+	less   = require('gulp-less'),
+	concat = require('gulp-concat'),
+	uglify = require('gulp-uglify'),
+	mocha  = require('gulp-mocha'),
+	run    = require('run-sequence');
+
+
+// The Gulp tasks
+gulp.task('less', function () {
+	return gulp.src(['./less/styles.less'])
+		.pipe(less())
+		.pipe(gulp.dest('./css/'));
+});
+
+
+gulp.task('watch', function () {
+	return gulp.watch('./less/**/*.less', ['less']);
+});
+
+
+gulp.task('test', function () {
+	return gulp.src('./test/tests/**/*.js')
+		.pipe(mocha());
+});
+
+
+gulp.task('concat', function () {
+	return gulp.src(['./js/**/*.js'])
+		.pipe(concat('scripts.min.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest('./js/'));
+});
+
+
+gulp.task('dist', function (callback) {
+	run('test', ['test', 'less'], callback);
+});
+
+
+gulp.task('default', ['dist']);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>What's the difference?</h2>
+					<ul>
+						<li class="fragment">With Gulp your build file is code, not config</li>
+						<li class="fragment">Build file lives with your code in Git (you are using Git, right?)</li>
+						<li class="fragment">You use standard Node.js libraries to do things</li>
+						<li class="fragment">Plugins are simple and do one thing - most are a ~20 line function</li>
+						<li class="fragment">Plugins are simple to write<sup>*</sup></li>
+						<li class="fragment">Tasks are executed with maximum concurrency</li>
+						<li class="fragment">Custom functionality with JavaScript</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h2>Demos & Examples</h2>
+				</section>
+
+
+
+
+
+
+
+
+
+			</div>
+		</div>
+
+
+
+
+
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
