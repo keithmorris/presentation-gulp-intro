@@ -1,0 +1,42 @@
+// Five Column mixin
+.five-col() {
+	.five-col {
+		// --- Gridpak variables ---
+		@max_columns: 5;
+		@padding: 0 0%;
+		@gutter_px: @gutter-size;
+		@gutter_pc: 0;
+
+		.span_1,
+		.lifestyle-thumb,
+        .mega-nav-thumb {
+			.mixin-span(1, @gutter_pc, @gutter_px, @padding, @max_columns);
+		}
+		.span_2,
+		.hero-image-narrow,
+		.promo-area,
+		.promo-area-small,
+        .mega-nav-guide {
+			.mixin-span(2, @gutter_pc, @gutter_px, @padding, @max_columns);
+		}
+		.span_3,
+		.hero-image,
+		.hero-video-poster,
+		.givingback-hero,
+        .mega-nav-rollup {
+			.mixin-span(3, @gutter_pc, @gutter_px, @padding, @max_columns);
+		}
+		.span_4 {
+			.mixin-span(4, @gutter_pc, @gutter_px, @padding, @max_columns);
+		}
+		.span_5,
+		.recipe-callout,
+		.recipe-hero,
+		.hero-image-full,
+		.signup-pods,
+		.wide-callout {
+			.mixin-span_first;
+			width: 100%;
+		}
+	}
+}

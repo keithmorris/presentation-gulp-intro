@@ -1,0 +1,173 @@
+/*******************************************************
+	IE8 specific styles
+	The .lt-ie9 is added in the master layout if ie8
+********************************************************/
+.lt-ie9 {
+
+	// -----------------------------------------------------------------------
+	//                    Five Column
+	// -----------------------------------------------------------------------
+	.five-col();
+
+	// -----------------------------------------------------------------------
+	//                    Sixteen Column
+	// -----------------------------------------------------------------------
+	.sixteen-col();
+
+
+	// put ie8 specific overrides in here
+	.container,
+	.site-header .header-container,
+	header.site-header .secondary-nav ul
+	{
+		width: 960px;
+	}
+
+	.lg-hidden {
+		display: none;
+	}
+
+	// IE8 Grid
+	.row {
+		margin-left:0;
+		margin-bottom: @gutter-size;
+	}
+
+	.row-last {
+		margin-bottom: 0;
+	}
+
+	.col {
+		border-left-width:@gutter-size;
+		// padding: 0 0%;
+	}
+
+	.cta {
+		a,
+		button
+		{
+			padding: .5em 1.5em .4em;
+		}
+	}
+
+	.main-padded {
+		.row {
+			.col {
+				padding: 0 6px;
+				// &.wide-callout {
+				// 	padding: 30px 5%;
+				// 	width: 99%;
+				// 	margin-left: 5px;
+				// }
+				// &:first-child { padding-left: 0; }
+				// &:last-child { padding-right: 0; }
+			}
+		}
+			
+	}
+
+
+	// Header overrides
+	header.site-header {
+
+		.header-container {
+			#logo {
+				a {
+	                background: url(../images/logo-IE8.png) 0 0 no-repeat;
+				}
+			}
+		}
+
+		.search-btn {
+			background: url(/assets/css/images/search-btn-sm.gif) 0 0 no-repeat !important;
+
+			&:hover {
+				background: url(/assets/css/images/search-btn-hover-sm.gif) 0 0 no-repeat !important;
+			}
+		}
+	}
+
+	// follow pods
+	.signup-pods {
+		// red textured background
+		background: url('images/bg-red-texture-sm.png') @palette-primary-red;
+
+		.pod-left,
+		.pod-right
+		{
+			width: 48%;
+			position: relative;
+		}
+
+		.pod-left {
+			float: left;
+		}
+
+		.divider {
+			float: left;
+			width: 1%;
+		}
+
+		.pod-right {
+			float: right;
+		}
+	}
+
+	.page-home {
+		.recipe-callout {
+
+			a.btn {
+				white-space: nowrap;
+			}
+			.pod-left {
+				width: 69%;
+				float: left;
+			}
+
+			.pod-right {
+				position: relative;
+				width: 29%;
+				float: right;
+			}
+
+			.cta {
+				bottom: 25%;
+				@media screen and (max-width: 745px) and (min-width: 480px) {
+					bottom: 18%;
+				}
+			}
+		}
+	}
+
+	.page-locations {
+		.location-search {
+			.location-results {
+				.result {
+					.cta-button {
+						width: 125px;
+						&.cta-order { margin-right: 5px; }
+						&.cta-directions { margin-left: 5px; }
+					}
+					.address {
+						.icon {
+							background-image: url("/assets/css/images/btn_expand_IE8.png");
+						}
+					}
+					&.expanded {
+						.address .icon {
+							background-image: url("/assets/css/images/btn_collapse_IE8.png");
+						}
+					}
+				}
+			}
+		}
+	}
+
+	footer.site-footer {
+		nav {
+			.follow-us {
+				width: 215px;
+			}
+		}
+	}
+}

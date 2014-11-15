@@ -1,0 +1,59 @@
+// Styles for Desktop site
+.lg-hidden {
+	display: none;
+}
+// follow pods
+.signup-pods {
+	// red textured background
+	background: url('images/bg-red-texture.png') @palette-primary-red;
+	background-size: 270px 225px;
+
+	.pod-left, 
+	.pod-right
+	{
+		width: 48%;
+		position: relative; 
+	}
+
+	.pod-left {
+		float: left;
+	}
+
+	.divider {
+		float: left;
+		width: 1%;
+	}
+
+	.pod-right {
+		float: right;
+	}
+}
+
+.page-home {
+
+	.recipe-callout {
+
+		a.btn {
+			white-space: nowrap;
+		}
+		.pod-left {
+			width: 69%;
+			float: left;
+		}
+
+		.pod-right {
+			position: relative;
+			width: 29%;
+			float: right; 
+		}
+
+		.cta {
+			bottom: 25%;
+			@media screen and (max-width: 745px) and (min-width: 480px) {
+				bottom: 18%;
+			}
+		}
+	}
+}
+
+

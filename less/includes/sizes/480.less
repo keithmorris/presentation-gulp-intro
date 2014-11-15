@@ -1,0 +1,252 @@
+// Styles for 480px and down (horizontally held smartphone)
+.sm-hidden {
+	display: none !important;
+}
+
+#homeleftslider {
+	margin-bottom:48px;
+}
+.flex-control-nav {
+	position:relative;
+	z-index:100;
+	bottom: -35px;
+}
+
+.flex-control-paging li a {
+	background:#fff;
+	box-shadow: inset 0 0 2px rgba(255, 255, 255, 1);
+}
+
+.flex-control-paging li a.flex-active {
+	background:#b32029;
+	border-color:#fff;
+}
+
+
+body>.container{
+	// float:left;
+	clear: both;
+}
+
+
+.cta {
+	width: 100%;
+	position: absolute;
+	bottom: 10%;
+	text-align: center;
+}
+
+.pod-left,
+.pod-right {
+	position: relative;
+	width: 100%;
+	margin-bottom: @gutter-size;
+}
+// homepage 2-up pods
+.page-home {
+	.signup-pods {
+		background-image: none;
+
+		.pod-left,
+		.pod-right
+		{
+			background: url('images/bg-red-texture.png') @palette-primary-red;
+			background-size: 270px 225px;
+		}
+	}
+
+	.wide-callout {
+		.pod-right {
+			margin-bottom: -3em;
+
+			.cta {
+				bottom: 75%;
+			}
+		}
+	}
+
+}
+
+
+
+
+.page-food {
+
+	.fact-callout{
+		padding:10px 10%;
+		img{
+			display:block;
+		}
+
+		.header{
+			width:100%;
+		}
+
+		.text{
+			width:100%;
+		}
+	}
+
+	.input-callout{
+
+		.section{
+			float:left;
+			width:100%;
+		}
+	}
+
+}
+
+
+header.site-header {
+	.header-container {
+		.search-bar {
+			input.search-field {
+				max-width: 200px;
+				width: 200px;
+			}
+		}
+	}
+}
+.page-restaurants {
+	.lifestyle-video {
+		position: relative;
+		a.video-pop {
+			width: 50% !important;
+			height: 50% !important;
+		}
+	}	
+}
+.page-food {
+	.hero-video-poster {
+		position: relative;
+		a.video-pop {
+			width: 20% !important;
+			height: 30% !important;
+		}
+	}	
+}
+
+
+
+
+//Search Results
+
+.page-search-results {
+
+	.site-header {
+		.header-container {
+			.search_bar_dropdown {
+				display: none;
+			}
+		}
+	}
+
+	.main-padded {
+		padding: @gutter-size 15px;
+
+		.results_head {
+			margin-left: 2px;
+			h1 { font-size: 1.6em; }
+		}
+
+		.results_filter {
+			ul {
+				padding-left: 10px;
+				li {
+					background: url(/assets/css/images/dropGradient.jpg) 0 0 repeat-x;
+					display: block;
+					margin: 0;
+					padding: 10px;
+
+					a {
+						display: block;
+						margin-left: 0;
+						width: 100%;
+						&:hover { text-decoration: none; }
+						&.current_filter {
+							background: url(/assets/css/images/dropArrow.png) right center no-repeat;
+							color: @primary-color;
+						}
+					}
+					&.drop { 
+						&:hover {
+							background: url(/assets/css/images/drop_hover_bg.jpg) 0 0 repeat-x;
+						}
+					}
+					&.chosen { 
+						display: block;
+						&:hover {
+							background: url(/assets/css/images/dropGradient.jpg) 0 0 repeat-x;
+						}
+					}
+
+				}
+			}
+		}
+
+		.mobile_select {
+			background: url(/assets/css/images/dropGradient.jpg) 0 0 repeat-x;
+			overflow: hidden;
+			width: 98%;
+			margin: 40px 0 20px 10px;
+			height: 40px;
+
+			select {
+				background: url(/assets/css/images/dropArrow.png) 98% center no-repeat;
+				border: 0;
+				border-radius: 0;
+				color: @primary-color;
+				font-family: proxima-nova, 'Helvetica Neue', 'Helvetica', sans-serif;
+				font-size: 18px;
+				font-weight: 700;
+				height: 38px;
+				padding: 0 10px;
+				width: 100%;
+				-webkit-appearance: none;
+			}
+		}
+
+		.results_list {
+			.result {
+				.result_title {
+					a.result_link {
+						margin: 0;
+					}
+				}
+				.result_content {
+					border-left-width: 0;
+					.recipe_rating {
+						strong {
+							display: inline;
+							&:after { content: " |"}
+						}
+						a {
+							font-weight: bold;
+							display: inline;
+						}
+					}
+				}
+			}
+		}
+
+		.results_pagination {
+			display: table;
+			margin: auto;
+
+			p.page_number {
+				padding: 12px 40px;
+			}
+		}
+
+		.results_per_page {
+			p {
+				float: left;
+				margin: 24px 20px 0 -10px;
+			}
+		}
+
+	}
+}
+
+

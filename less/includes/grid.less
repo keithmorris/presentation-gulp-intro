@@ -1,0 +1,100 @@
+/**
+ * Grid System
+ */
+
+.mixin-col {
+     border:0px solid rgba(0,0,0,0);
+     float:left;
+     -webkit-box-sizing:border-box;
+     -moz-box-sizing:border-box;
+     box-sizing:border-box;
+     -moz-background-clip:padding-box !important;
+     -webkit-background-clip:padding-box !important;
+     background-clip:padding-box !important;
+}
+
+.mixin-span(@num, @gutter_pc, @gutter_px, @padding, @max_columns) {
+	@one_col: (100% - (@gutter_pc * (@max_columns - 1))) / @max_columns;
+	width:(@one_col * @num) + (@gutter_pc * (@num - 1));
+	border-left-width:@gutter_px;
+	padding:@padding;
+	margin-left:@gutter_pc;
+}
+.mixin-span_first {
+	margin-left:0;
+}
+
+
+.col {
+    .mixin-col;
+	border-left-width:@gutter-size;
+	padding:0;
+}
+
+.row {
+	.clearfix();
+	margin-left:-@gutter-size;
+	margin-bottom: @gutter-size;
+}
+
+.row-last {
+	margin-bottom: 0;
+}
+
+body{
+    position:relative;
+    z-index:1; //set state to desktop
+}
+
+    /* 1. 2 Column Grid 0px - 479px 
+    ----------------------------------------------------------------------------- 
+    
+    Span 1:    50%
+    Span 2:    100%
+    
+    ----------------------------------------------------------------------------- */	
+    
+	@media screen and (min-width: 0px) and (max-width: 480px) {
+        
+        body{
+            z-index:2; //set state to mobile
+        }
+
+        .row {
+			margin-bottom: 0;
+        }
+        
+        .two-col();
+
+    }
+
+    /* 2. 5 Column Grid 480px - Infinity 
+    ----------------------------------------------------------------------------- 
+    
+    Span 1:    20%
+    Span 2:    40%
+    Span 3:    60%
+    Span 4:    80%
+    Span 5:    100%
+    
+    ----------------------------------------------------------------------------- */	
+    
+	@media screen and (min-width: 481px) {
+        
+        body{
+            z-index:1; //set state to desktop
+        }
+
+		// -----------------------------------------------------------------------
+		//                    Five Column
+		// -----------------------------------------------------------------------
+		.five-col();
+
+
+		// -----------------------------------------------------------------------
+		//                    Sixteen Column
+		// -----------------------------------------------------------------------
+		.sixteen-col();
+
+    }
+

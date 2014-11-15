@@ -1,0 +1,39 @@
+// Two column grid mixin
+.two-col() {
+
+	.row-last {
+		margin-bottom: -@gutter-size;
+	}
+	// --- Gridpak variables ---
+	@max_columns: 2;
+	@padding: 0;
+	@gutter_px: @gutter-size;
+	@gutter_pc: 0;
+
+	.span_1,
+	.home-lifestyle,
+	.lifestyle-thumb
+	 {
+		.mixin-span(1, @gutter_pc, @gutter_px, @padding, @max_columns);
+		margin-bottom: @gutter-size;
+	}
+
+	.span_2,
+	.hero-promo,
+	.hero-image,
+	.hero-video-poster,
+	.promo-area,
+	.recipe-callout,
+	.recipe-hero,
+	.givingback-callout,
+	.givingback-hero,
+	.wide-callout,
+	.hero-image-full,
+	.hero-image-narrow,
+	.map,
+	.location-search{
+		.mixin-span_first;
+		width: 100%;
+		margin-bottom: @gutter-size;
+	}
+}

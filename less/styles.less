@@ -1,0 +1,45 @@
+// Variables
+@import 'includes/variables';
+
+// Utilities and Mixins
+@import 'includes/utils';
+@import 'lib/elements';
+
+// Normalize.css
+@import 'lib/normalize';
+
+// Magnific Popup
+@import 'lib/magnific-popup';
+
+/* Content Styles */
+// Header Styles
+@import 'includes/header';
+
+// Main Content
+/* Global Content Styles all screen sizes */
+@import 'includes/sizes/site.less';
+
+/* Small Screens */
+@media screen and (min-width: 0px) and (max-width: 479px) {
+	@import 'includes/sizes/480';
+}
+
+/* Desktop Screens */
+@media screen and (min-width: 480px) {
+	@import 'includes/sizes/desktop';
+}
+ 
+
+
+/* Grids */
+@import 'includes/grid-2-col';
+@import 'includes/grid-5-col';
+@import 'includes/grid-16-col';
+@import 'includes/grid';
+
+// Footer Styles
+@import 'includes/footer';
+
+
+// IE8 specific overrides
+@import 'includes/ie8';
